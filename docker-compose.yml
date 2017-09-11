@@ -1,0 +1,16 @@
+version: '2'
+services:
+
+  nginx:
+      build: nginx/.
+      env_file: .env.nginx
+      volumes:
+        - nginx:/etc/letsencrypt
+      restart: unless-stopped
+      ports:
+        - 80:80
+        - 443:443
+
+volumes:
+  nginx:
+    driver: local
