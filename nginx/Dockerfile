@@ -3,8 +3,11 @@ LABEL Maintainer Mofesola Babalola <me@mofesola.com>
 
 WORKDIR /etc/nginx
 
-RUN apt-get update && apt-get install -y software-properties-common
-RUN add-apt-repository ppa:certbot/certbot && apt-get install -y python-certbot-nginx
+RUN apt-get update && apt-get install -y software-properties-common \
+                   && add-apt-repository ppa:certbot/certbot \
+                   && apt-get install -y python-certbot-nginx \
+                   && apt-get clean \
+                   && rm -rf /var/lib/apt/lists/*
 
 RUN rm /etc/nginx/conf.d/default.conf /etc/nginx/nginx.conf
 
